@@ -1,0 +1,66 @@
+MainScreenManager:
+    MainScreen:
+    Sp500StocksScreen:
+
+<MainScreen>:
+    name: "main"
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint: .7, .9
+        pos_hint: { 'center_x' : .5, 'center_y' : .5 }
+        Label:
+            size_hint: 1, 0.5
+            font_size: self.height/4
+            halign: 'center'
+            valign: 'middle'
+            text: "Graham condition checker"
+        BoxLayout:
+            orientation: "vertical"
+            spacing: "10dp"
+
+            Button:
+                text: "Check S&P500 Stocks conditions\n\n(Updated: 03.07.2022)"
+                font_size: self.height/8
+                size_hint: .8, .4
+                pos_hint: { 'center_x' : .5, 'center_y' : .5 }
+                on_release:
+                    app.root.current = "stocks"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Update S&P500 Stocks data"
+                font_size: self.height/8
+                size_hint: .8, .4
+                pos_hint: { 'center_x' : .5, 'center_y' : .5 }
+
+<Sp500StocksScreen>:
+    name: "stocks"
+
+    GridLayout:
+        cols: 1
+        Label:
+            size_hint: 1, 0.5
+            text_size: self.size
+            font_size: 12
+            halign: 'center'
+            valign: 'middle'
+            text: "S&P500 Stocks conditions: "
+        BoxLayout:
+            orientation: "vertical"
+            spacing: "10dp"
+
+            Button:
+                text: "A"
+            Button:
+                text: "B"
+            Button:
+                text: "A"
+            Button:
+                text: "B"
+            Button:
+                text: "A"
+            Button:
+                text: "Go back to main menu"
+                on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "right"
