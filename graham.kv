@@ -7,60 +7,90 @@ MainScreenManager:
 
     BoxLayout:
         orientation: "vertical"
-        size_hint: .7, .9
+        size_hint: .9, .9
         pos_hint: { 'center_x' : .5, 'center_y' : .5 }
         Label:
             size_hint: 1, 0.5
-            font_size: self.height/4
+            font_size: self.width/12
             halign: 'center'
             valign: 'middle'
             text: "Graham condition checker"
         BoxLayout:
             orientation: "vertical"
             spacing: "10dp"
-
             Button:
-                text: "Check S&P500 Stocks conditions\n\n(Updated: 03.07.2022)"
-                font_size: self.height/8
                 size_hint: .8, .4
                 pos_hint: { 'center_x' : .5, 'center_y' : .5 }
                 on_release:
                     app.root.current = "stocks"
                     root.manager.transition.direction = "left"
+                BoxLayout:
+                    pos: self.parent.pos
+                    size: self.parent.size
+                    orientation: 'vertical'
+                    Label:
+                        text: "Check S&P500 stocks conditions"
+                        font_size: self.width/16
+                    Label:
+                        text: "(Updated: 03.07.2022)"
+                        font_size: self.width/17
+
             Button:
-                text: "Update S&P500 Stocks data"
-                font_size: self.height/8
+                text: "Update S&P500 stocks data"
+                font_size: self.height/10
                 size_hint: .8, .4
                 pos_hint: { 'center_x' : .5, 'center_y' : .5 }
 
 <Sp500StocksScreen>:
     name: "stocks"
-
     GridLayout:
-        cols: 1
-        Label:
-            size_hint: 1, 0.5
-            text_size: self.size
-            font_size: 12
-            halign: 'center'
-            valign: 'middle'
-            text: "S&P500 Stocks conditions: "
+        cols:1
         BoxLayout:
-            orientation: "vertical"
-            spacing: "10dp"
-
+            orientation: "horizontal"
+            size_hint: 1, .1
+            Label:
+                size_hint: .8, 1
+                # text_size: self.size
+                # font_size: self.height/6
+                halign: 'left'
+                valign: 'top'
+                text: "S&P500 stocks conditions: "
             Button:
-                text: "A"
-            Button:
-                text: "B"
-            Button:
-                text: "A"
-            Button:
-                text: "B"
-            Button:
-                text: "A"
-            Button:
-                text: "Go back to main menu"
+                size_hint: .2, 1
+                text: "<-"
                 on_release:
                     app.root.current = "main"
                     root.manager.transition.direction = "right"
+        ScrollView:
+
+<ScrollView@ScrollView>:
+    StockList:
+        padding: 10
+        spacing: 5
+        cols: 1
+        size_hint_y:  None
+        height: self.minimum_height
+
+
+
+
+<smth@BoxLayout>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "10dp"
+
+        Button:
+            text: "A"
+        Button:
+            text: "B"
+        Button:
+            text: "A"
+        Button:
+            text: "B"
+        Button:
+            text: "A"
+        Button:
+            text: "Go back to main menu"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
